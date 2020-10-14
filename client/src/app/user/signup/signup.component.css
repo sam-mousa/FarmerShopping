@@ -1,0 +1,16 @@
+mat-form-field{
+    width: 100%;
+}
+.align-verticaly{
+    display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+  .pos-absolout{
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+  }
+  .pos-relative{
+    position: relative;
+  }

@@ -1,0 +1,63 @@
+<!-- <mat-chip-list *ngIf="error">
+  <mat-chip color="primary">{{ error }}</mat-chip>
+</mat-chip-list> -->
+
+  <div *ngIf="isLoading" style="text-align: center">
+    <app-loading-spinner></app-loading-spinner>
+  </div>
+  
+  <form [formGroup]="signinForm" (ngSubmit)="onSubmit()" *ngIf="!isLoading">
+    <div class="form-container">
+      <mat-card>
+        <div class="float-left">
+          <h3 class="align-verticaly"> <mat-icon>perm_identity</mat-icon>Login User</h3>
+        </div>
+        
+        <mat-form-field class="controls">
+          <input
+            matInput
+            type="text"
+            name="email"
+            placeholder="Email"
+            [formControl]="signinForm.get('email')"
+            />
+            <mat-error *ngIf="signinForm.get('email').hasError('pattern') && !signinForm.get('email').hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="signinForm.get('email').hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+  
+        
+        <mat-form-field class="controls">
+          <input
+            matInput
+            type="password"
+            name="password"
+            placeholder="Password"
+            [formControl]="signinForm.get('password')"
+          />
+          
+          <mat-error *ngIf="signinForm.get('password').hasError('required')">
+            password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="!signinForm.valid"
+        >
+          Sign In
+        </button>
+      </mat-card>
+      <mat-error *ngIf="error">
+        wrong <strong>Email</strong> or <strong>password</strong> please try again
+      </mat-error>
+    </div>
+  </form>
+  <div class="pos-absolout">
+    <button mat-raised-button color="accent"  [routerLink]="['', 'signup']">Register</button>
+  </div>
+  
